@@ -1,0 +1,105 @@
+body {
+	background: #CCC;
+}
+
+.container-image{
+	text-align: center;
+	/* border: 1px; */
+	/* border: 10px solid black;	 */
+	margin-left: 5px;
+	margin-right: 5px;
+	/* cursor: url(normal.gif), wait; */
+	/* display: block; */
+    /* margin: 0 auto; */
+}
+
+.container-image img{
+	
+}
+
+.reference{
+	/* background-image: url("/stimuli/ref/appartment.png");	 */
+	cursor: not-allowed;
+	display: inline-block;
+}
+
+.distort {
+	cursor: none;	
+	display: inline-block;
+}
+
+.hand:active {
+    cursor: none;
+}
+
+#canvasDiv {
+	/* background: black; */
+}
+
+#distortionDiv{
+   margin:5 auto;
+   position: relative; /* add */
+}
+
+.transparent{	
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+}
+
+.transparent-075{	
+	opacity: 0.75;
+	filter: alpha(opacity=50);
+}
+
+.inverted {
+	filter: invert(100%);
+}
+
+.hue-shift {
+	filter: hue-rotate(330deg);
+}
+
+.canvas{
+	width:100%;
+	height:100%;
+	position:absolute; /* change */
+	left: 0; 
+	top: 0;
+}
+
+.row {
+	/* padding-top: 20px; */
+	/* padding-bottom: 20px; */
+}
+
+.overflow {
+	overflow-x: scroll;
+	overflow-y: hidden;
+	white-space: nowrap
+}
+
+.container-fluid {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.container {
+	padding-bottom: 20px;
+}
+
+.col-lg-6 {
+	/* border: 1px solid black; */
+}
+
+.debug{	
+	border: 1px solid black;	
+}
+
+.horiontal-margin {
+	margin-left:5px;
+	margin-right:5px;
+}
+
+.centered {
+	align
+}
