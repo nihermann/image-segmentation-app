@@ -1,3 +1,6 @@
+"""
+Copy reference images to dst_layers folder assuming there is only one layer in the reference images.
+"""
 import os, shutil
 
 fileList = os.listdir("./stimuli/ref")

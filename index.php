@@ -85,6 +85,9 @@
 		</div>
 		
 		<div class="container">
+            <div class="row text-center" style="margin-bottom:5px">
+                Hold down <b>D</b> to activate the eraser or <b>F</b> to hide the mask.
+            </div>
 			<div class="row text-center"></button>
 				<div >
 					<button class="btn btn-primary" onClick="changeTool('marker')">Brush (B)</button>						

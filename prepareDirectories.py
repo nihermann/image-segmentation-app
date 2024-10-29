@@ -1,3 +1,6 @@
+"""
+This script fills scenes.txt with the names of the scenes in the stimuli/ref directory.
+"""
 import os
 
 fileList = os.listdir("./stimuli/ref")
@@ -12,3 +15,5 @@ for fileName in fileList:
    # if not os.path.exists(newDir):
       # os.makedirs(newDir)
    text_file.write(fileName + '\n')
+
+text_file.close()
