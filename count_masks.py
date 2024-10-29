@@ -5,9 +5,8 @@ import os
 from collections import Counter
 import matplotlib.pyplot as plt
 from pathlib import Path
+import paths
 
-# Define the path to the "output" directory
-output_dir = "outputs_flicker"
 
 # Function to get the names of the deepest directories
 def find_deepest_directories(directory):
@@ -21,7 +20,7 @@ def find_deepest_directories(directory):
     return deepest_dirs
 
 # Count occurrences of each deepest directory name
-deepest_dirs = find_deepest_directories(output_dir)
+deepest_dirs = find_deepest_directories(paths.OUTPUT_DIR)
 deepest_counts = Counter(deepest_dirs)
 
 print(deepest_counts)

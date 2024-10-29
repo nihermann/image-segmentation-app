@@ -3,9 +3,11 @@ Copy reference images to dst_layers folder assuming there is only one layer in t
 """
 import os, shutil
 
-fileList = os.listdir("./stimuli/ref")
+import paths
+
+fileList = os.listdir(paths.REF_DIR)
 for fileName in fileList:
     fileName = fileName[:-4]
-    newDir = "./stimuli/dst_layers/" + fileName
+    newDir = paths.DST_DIR / fileName
     os.makedirs(newDir, exist_ok=True)
-    shutil.copyfile("./stimuli/ref/" + fileName + ".png", newDir + "/" + fileName + "_l1.png")
+    shutil.copyfile(paths.REF_DIR / (fileName + ".png"), newDir / (fileName + "_l1.png"))
