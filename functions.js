@@ -9,22 +9,22 @@ var dstDirectory = "stimuli/dst_layers/";
 var scenesListPath = "stimuli/set";
 var sessionNumber = 1;
 
-var scenesList;
-var scenesNumber;
+var scenesList;  // list of names in "stimuli/set{sessionNumber}.txt"
+var scenesNumber;  // set to the number of files in the scenesList - 1 as we assume the last line is empty
 var currentSceneNumber;
 var currentSceneName;
 
 var currentLayer = 0;
-var totalLayers = 3;
+var totalLayers = 0;
 var scenesCounter;
-var totalSceneNumberPerUser = 6;
+var totalSceneNumberPerUser = 3;
 
 var userName;
 
 var isFlickerActive;
 var flickerTime = 0;
 
-var flickerModeOn = false;
+var flickerModeOn = true;
 var exprimentFinished = false;
 
 var resetCookie = false;
@@ -42,12 +42,12 @@ function startFlicker()
 	
 	if(!isFlickerActive)
 	{
-		if(flickerTime != 0)
-			document.getElementById('distortionDiv').style.backgroundImage  = "none";
+		// if(flickerTime != 0)
+		document.getElementById('canvasDiv').style.zIndex  = "-1";
 		
-		setTimeout(function(){
-			document.getElementById('distortionDiv').style.backgroundImage  = "url(" + refImage.src + ")";
-		}, flickerTime);		
+		// setTimeout(function(){
+		// 	document.getElementById('canvasDiv').style.zIndex  = "0";
+		// }, flickerTime);
 		isFlickerActive = true;
 	}
 }
@@ -59,12 +59,12 @@ function stopFlicker()
 	
 	if(isFlickerActive)
 	{
-		if(flickerTime != 0)
-			document.getElementById('distortionDiv').style.backgroundImage  = "none";
+		// if(flickerTime != 0)
+		document.getElementById('canvasDiv').style.zIndex  = "0";
 		
-		setTimeout(function(){
-			document.getElementById('distortionDiv').style.backgroundImage  = "url(" + dstImage.src + ")";
-		}, flickerTime);		
+		// setTimeout(function(){
+		// 	document.getElementById('canvasDiv').style.zIndex  = "0";
+		// }, flickerTime);
 		isFlickerActive = false;
 	}
 }
@@ -75,7 +75,7 @@ function getRandomSceneName()
 	if(temp != "")
 		scenesCounter = Number(temp);
 	
-	console.log(scenesCounter);
+	console.log("Scenes Counter: " + scenesCounter);
 	if (scenesCounter == "")
 	{		
 		console.log("doesn't exist");
@@ -94,7 +94,7 @@ function getRandomSceneName()
 	do
 	{
 		currentSceneNumber = Math.floor((Math.random() * scenesNumber)); 
-		console.log(currentSceneNumber);
+		console.log("Current Scene Number: " + currentSceneNumber);
 		fileName = scenesList[currentSceneNumber];
 		
 		console.log(directory);
@@ -123,7 +123,7 @@ function getRandomSceneName()
 function getNextLevelScene()
 {	
 	var directory = dstDirectory + fileName;
-	console.log(directory);
+	console.log("directory: " + directory);
 	var temp = $.ajax({
 			type: "POST",
 			url: "countFiles.php",
@@ -136,12 +136,12 @@ function getNextLevelScene()
 		});
 		
 	totalLayers = parseInt(temp.responseText);
-	console.log(totalLayers);
+	console.log("Total Layers: " + totalLayers);
 
     currentLayer = currentLayer + 1;  
     fileNameLayer = dstDirectory + fileName + "/" + fileName + "_l" + currentLayer.toString()  + '.png';
-    console.log(fileNameLayer);	
-	console.log(currentLayer);		
+    console.log("File Name Layer: " + fileNameLayer);
+	console.log("Current Layer: " + currentLayer);
 	setNextLevelImage();		
 }
 
@@ -160,7 +160,7 @@ function submitResults(){
 
 function readImagesList()
 {	
-	var temp = getFileFromServer(scenesListPath + String(sessionNumber) + '.txt');	
+	var temp = getFileFromServer(scenesListPath + String(sessionNumber) + '.txt');	// reads the file at "stimuli/set{sessionNumber}.txt" which is assumed to contain the list of scenes with an empty line at the end
     if (temp === null) {
         console.log("Error occured during loading " + scenesListPath + "from serwer");
     }
@@ -183,10 +183,10 @@ function getFileFromServer(url) {
 
 function loadImage(){
 	refImage.src = refDirectory + fileName + '.png';
-	console.log(refImage.src);
+	console.log("Load Image.. Ref Image: " + refImage.src);
 	refImage.onload = function() { SetValues(); };
     dstImage.src = fileNameLayer;
-	console.log(dstImage.src);
+	console.log("Load Image.. Dst Image: " + dstImage.src);
 }
 
 function setDivSizes()
@@ -210,7 +210,7 @@ function setNextLevelImage()
 	document.getElementById('distortionDiv').style.backgroundImage  = "none";
 	setTimeout(function(){
 		dstImage.src = fileNameLayer;
-		console.log(dstImage.src);
+		console.log("Setting image... Dest Image Path: " + dstImage.src);
 		document.getElementById('distortionDiv').style.backgroundImage  = "url(" + dstImage.src + ")";
 		console.log("url(" + "./" + fileNameLayer + ")");
 		console.log(document.getElementById('distortionDiv').style.backgroundImage);
@@ -239,8 +239,8 @@ function setUser()
 		scenesCounter = 1;
 		
 	
-	console.log(userName);
-	console.log(scenesCounter);
+	console.log("User name: " + userName);
+	console.log("Scenes Counter: " + scenesCounter);
 }
 
 function reload()
@@ -352,13 +352,13 @@ function clearCookies() {
 $( document ).ready(function() {
 	
 	if(resetCookie)
-		clearCookies();	
+		clearCookies();	 // clears the "user" cookie
 		
-	setOutDir();
+	setOutDir();  // creates out dir depending on the mode (flicker or pairwise)
 	
-	setUser();
-	readImagesList();	
-	var proceed = getRandomSceneName();
+	setUser();  // sets user name to cookie ("user") or add an increment to the user name if the user name already exists
+	readImagesList(); // reads the list of scenes from the file "stimuli/set{sessionNumber}.txt" and sets the scenesList and scenesNumber variables
+	var proceed = getRandomSceneName(); // gets a random scene name from the scenesList and checks if the scene already exists in the out directory and sets the fileName and currentSceneNumber variable
 	if(!proceed)
 		return;
 	getNextLevelScene()
@@ -376,9 +376,9 @@ function setProgress()
 {		
 	
 	var progress = (scenesCounter - 1)/totalSceneNumberPerUser * 100;
-	console.log(scenesCounter);
-	console.log(totalSceneNumberPerUser);
-	console.log(progress);
+	console.log("Scenes Counter: " + scenesCounter);
+	console.log("Total Scene Number Per User: " + totalSceneNumberPerUser);
+	console.log("Progress: " + progress);
 	document.getElementById('progressbar').style.width = String(progress) + '%';
 }
 

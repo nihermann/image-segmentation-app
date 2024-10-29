@@ -6,7 +6,7 @@ text_file = open("./stimuli/scenes.txt", "w")
 
 for fileName in fileList:
    fileName = fileName[:-4]
-   print fileName
+   print(fileName)
    
    # newDir = outputDirectory + fileName
    # if not os.path.exists(newDir):

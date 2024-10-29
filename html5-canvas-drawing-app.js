@@ -162,6 +162,7 @@ function prepareCanvas(){
 			case "4":				
 				changeBrushSize(40)
 				break;
+			case "d":
 			case "z":				
 				curTool = "eraser";
 				break;
@@ -194,12 +195,18 @@ function prepareCanvas(){
 					return;
 				startFlicker();
 				break;
+			case "r":
+				if(e.ctrlKey && e.altKey && confirm("Are you sure you want to reset the experiment?")) {
+					clearCookies();
+				}
+				break;
 		}
 		drawCircle();
 	};
 	
 	document.onkeyup=function(e){
 		switch(e.key) {
+			case "d":
 			case "z":				
 				curTool = "marker"
 				break;
