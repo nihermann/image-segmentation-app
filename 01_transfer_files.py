@@ -4,9 +4,9 @@ This script is used to transfer the selected images from the selected directory 
 
 import os, shutil
 from pathlib import Path
-import pathlib as pl
 
 import paths
+from prepareDirectories import prepare_dirs
 
 
 def prepare_selected(path_to_selected: str):
@@ -27,8 +27,9 @@ def prepare_selected(path_to_selected: str):
                 shutil.copyfile(img, dst_path / (dest_name[:-4] + "_l1.png"))
                 shutil.copyfile(img, paths.REF_DIR / dest_name)
 
-    # importing prepareDirectories will execute the file and update scenes.txt
-    import prepareDirectories
+    # update scenes.txt
+    prepare_dirs(paths.REF_DIR)
+    print("Selected images have been transferred to the stimuli directory. Please copy the scenes.txt entries to set1.txt to include them into the experiment.")
 
 if __name__ == "__main__":
     prepare_selected(paths.SELECTED_DIR)
