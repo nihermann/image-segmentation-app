@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 import paths
 
+with open("stimuli/set1.txt", "r") as f:
+    selected_images = f.read().splitlines()
 
 # Function to get the names of the deepest directories
 def find_deepest_directories(directory):
@@ -16,7 +18,8 @@ def find_deepest_directories(directory):
         if not dirs:
             # check that the len of the directory name is greater than 1
             if len(Path(root).parts[-2]) > 36:  # exclude test image
-                deepest_dirs.append(os.path.basename(root))
+                if os.path.basename(root) in selected_images:
+                    deepest_dirs.append(os.path.basename(root))
     return deepest_dirs
 
 # Count occurrences of each deepest directory name

@@ -17,7 +17,7 @@ var currentSceneName;
 var currentLayer = 0;
 var totalLayers = 0;
 var scenesCounter;
-var totalSceneNumberPerUser = 20;
+var totalSceneNumberPerUser = 36;
 
 var userName;
 

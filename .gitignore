@@ -3,3 +3,4 @@ stimuli/
 outputs_pairwise/
 outputs_flicker/
 masks_flicker/
+__pycache__/
