@@ -17,6 +17,7 @@ def export_to_selected():
         mask_destination.parent.mkdir(exist_ok=True)
 
         shutil.copy(mask, mask_destination)
+    shutil.copy("stimuli/set1.txt", paths.SELECTED_DIR / "set1.txt")
 
 if __name__ == '__main__':
     export_to_selected()
