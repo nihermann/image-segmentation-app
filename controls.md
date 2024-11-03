@@ -10,6 +10,10 @@ python 00_validate.py
 ### Run the experiment
 Visit this [website](http://localhost/app/) to run the experiment. If you can already see an image please reset the experiment with either `CONTROL + ALT + R` or by opening the console in the browser and execute `clearCookies()` in that console.
 
+On the Desktop you can find two images `00009.png` and `00009 gt.png`. Show both side by side and explain the artifacts. Take away, just color things that feel unnatural - all scenes are natural scenes so they can trust their feelings.
+
+Then explain the segmentation tool. There are many controls below but arguably the easiest workflow is to use the mouse wheel to adapt the brush size and to hold `f` to hide the colored mask and hold `d` to temporarily activate the eraser. Press `p` to proceed to the next image. The first image after starting the experiment is to play around and show but will not be counted. Thus, the first image does not need to be labeled. 
+
 - The experiment is done once the progressbar is full and no more images are shown.
 - If during the experiment an image cannot be loaded (you can't see an image but the progressbar is not full) please press `F5` and complete the experiment until refreshing the page does not yield new images. To trouble shoot after the experiment please run `python 02_count_masks.py` and check that the count is 36:
   - If this is the case and all bars in the plot have the same number you can dismiss the participant - everything is in order, the error did not affect the experiment.
