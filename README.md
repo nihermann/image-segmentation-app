@@ -1,4 +1,6 @@
 # 3D Reconstruction Artifact Experiment Workflow
+This image segmentation tool was used in the [PuzzleSim](https://nihermann.github.io/puzzlesim/index.html) paper during dataset creation. The software is a derivative work of the tool used by [Wolski et al.](https://dl.acm.org/doi/abs/10.1145/3196493). If you found this tool useful, please consider citing the papers below. Thank you and have fun! :)
+
 
 ## Before the Experiment
 
@@ -34,4 +36,28 @@ python 03_average_masks.py
 ### Export masks to the other project for evaluation
 ```shell
 python 04_export_masks.py
+```
+
+
+## Citation
+If you found this tool useful, please consider citing:
+```
+@inproceedings{hermann2025puzzle,
+  title={Puzzle similarity: A perceptually-guided cross-reference metric for artifact detection in 3d scene reconstructions},
+  author={Hermann, Nicolai and Condor, Jorge and Didyk, Piotr},
+  booktitle={2025 IEEE/CVF International Conference on Computer Vision (ICCV)},
+  pages={28881--28891},
+  year={2025},
+  organization={IEEE}
+}
+@article{wolski2018dataset,
+  title={Dataset and metrics for predicting local visible differences},
+  author={Wolski, Krzysztof and Giunchi, Daniele and Ye, Nanyang and Didyk, Piotr and Myszkowski, Karol and Mantiuk, Rados{\l}aw and Seidel, Hans-Peter and Steed, Anthony and Mantiuk, Rafa{\l} K},
+  journal={ACM Transactions on Graphics (TOG)},
+  volume={37},
+  number={5},
+  pages={1--14},
+  year={2018},
+  publisher={ACM New York, NY, USA}
+}
 ```
